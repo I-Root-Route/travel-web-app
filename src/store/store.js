@@ -6,6 +6,12 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
     state: {
         userName: "",
+        countryCurrencies: ["USD"],
+        visitedCountry: "",
+        visitedState: "",
+        dates: [],
+        totalCost: 0,
+        selectedCurrency: "USD",
     },
     mutations: {
         updateUser(state, user) {

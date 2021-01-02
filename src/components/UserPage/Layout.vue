@@ -42,7 +42,7 @@
           <v-list-item
               v-for="([icon, text, uri], i) in items"
               :key="i"
-              :href="uri"
+              @click="changeRoute(uri)"
           >
             <v-list-item-icon>
               <v-icon>{{ icon }}</v-icon>
@@ -69,7 +69,7 @@ export default {
     return {
       username: "",
       items: [
-        ['mdi-home', 'Home', '/user/:id'],
+        ['mdi-home', 'Home', this.$route.path],
         ['mdi-grease-pencil', 'Write', this.$route.path + '/write'],
       ],
       menuItems: [
@@ -81,7 +81,13 @@ export default {
   created() {
     this.username = this.$route.path.replace("/user/", "");
     this.username = this.username.replace("%20", " ");
-  }
+  },
+  methods: {
+    changeRoute(uri){
+      this.$store.dispatch("auth", {userName: this.username})
+      this.$router.push(uri);
+    }
+  },
 }
 </script>
 

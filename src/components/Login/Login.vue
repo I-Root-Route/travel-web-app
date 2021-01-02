@@ -212,8 +212,6 @@ export default {
         .then(res => {
           if (res["data"]["message"] === "Success"){
             this.$store.dispatch("auth", {userName: this.nameLogin})
-            console.log(this.nameLogin)
-            //window.location.href = '/user/' + this.nameLogin;
             this.$router.push('/user/' + this.nameLogin);
           }
           else{
