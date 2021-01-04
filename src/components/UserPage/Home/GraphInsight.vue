@@ -12,10 +12,24 @@ import 'echarts/lib/component/polar';
 
 export default {
   name: "PhotoCarousel",
+  props: ["personalData", "dataKey"],
   components: {
     'v-chart': ECharts,
   },
   data() {
+    let displayData = []
+    let preData = this.personalData[this.dataKey]
+    for (let i = 0; i < preData.length; i++) {
+      displayData.push({value: preData[i][1], name: preData[i][0]})
+    }
+
+    let unit = ""
+    if (this.dataKey === "length") {
+      unit = "Days"
+    } else if (this.dataKey === "spendings") {
+      unit = "USD"
+    }
+
     return {
       pie: {
         title: {
@@ -27,19 +41,13 @@ export default {
         },
         tooltip: {
           trigger: 'item',
-          formatter: '{a} <br/>{b} : {c} ({d}%)'
+          formatter: '{b}: {c} {a} ({d}%)'
         },
         series: [
           {
-            name: 'DATA',
+            name: unit,
             type: 'pie',
-            data: [
-              { value: 4, name: 'ASIA' },
-              { value: 0, name: 'EUROPE' },
-              { value: 2, name: 'AFRICA' },
-              { value: 1, name: 'SOUTH AMERICA' },
-              { value: 0, name: 'NORTH AMERICA' }
-            ],
+            data: displayData,
             itemStyle: {
               emphasis: {
                 shadowBlur: 10,
@@ -49,7 +57,7 @@ export default {
             }
           }
         ],
-        animationDuration: 4000
+        animationDuration: 10000
       }
     }
   },

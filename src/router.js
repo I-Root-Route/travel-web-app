@@ -8,6 +8,7 @@ import MainHome from "@/components/UserPage/Home/MainHome";
 import Login from "@/components/Login/Login";
 import Layout from "@/components/UserPage/Layout";
 import MainWrite from "@/components/UserPage/Write/MainWrite";
+import MainAccount from "@/components/UserPage/Account/MainAccount";
 
 
 Vue.use(Router)
@@ -21,7 +22,8 @@ const router = new Router({
             meta: {requiresAuth: true},
             children: [
                 {path: '', component: MainHome},
-                {path: 'write', component: MainWrite}
+                {path: 'write', component: MainWrite},
+                {path: 'account', component: MainAccount}
             ]
         },
     ],

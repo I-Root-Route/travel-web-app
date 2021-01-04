@@ -11,7 +11,6 @@
               :map="World"
               :location-class="getLocationClass"
               v-model="selected"
-              @click="test"
               @mouseover="pointLocation"
               @mouseout="unpointLocation"
               @mousemove="moveOnLocation"
@@ -23,15 +22,10 @@
           >
             {{ pointedLocation }}
           </div>
+
         </v-container>
       </v-col>
-      <v-col>
-        <v-row>
-          <v-lazy v-model="isActive">
-            <photo-carousel></photo-carousel>
-          </v-lazy>
-        </v-row>
-      </v-col>
+      <component :is="component" :personalData="personalData"></component>
     </v-row>
   </v-container>
 </template>
@@ -39,6 +33,7 @@
 <script>
 import {RadioSvgMap} from 'vue-svg-map'
 import World from '@svg-maps/world'
+import axios from 'axios'
 
 import PhotoCarousel from "@/components/UserPage/Home/PhotoCarousel";
 
@@ -49,6 +44,8 @@ export default {
   },
   data() {
     return {
+      component: null,
+      personalData: {"average": [], "calendar": [], "countries": [], "length": [], "spendings": []},
       isActive: false,
       World,
       pointedLocation: null,
@@ -57,7 +54,8 @@ export default {
       hover: false,
       tipStyle: {
         position: 'fixed',
-      }
+      },
+      searchDataUrl: "http://localhost:5000/api/search_personal_data",
     };
   },
   methods: {
@@ -66,7 +64,6 @@ export default {
     },
     pointLocation(event) {
       this.pointedLocation = this.getLocationName(event.target)
-      console.log(this.pointedLocation);
       this.hover = true;
     },
     unpointLocation() {
@@ -80,14 +77,31 @@ export default {
         left: `${event.clientX - 100}px`,
       }
     },
-    getLocationClass(location, index) {
-      // Generate heat map
-      return `svg-map__location svg-map__location--heat${index % 4}`
+    getLocationClass(location) {
+      if (location["name"] === "South Korea"){
+        location["name"] = "Korea South"
+      }else if(location["name"] === "North Korea"){
+        location["name"] = "North Korea"
+      }
+
+      if (this.personalData["countries"].indexOf(location["name"]) === -1){
+        return `svg-map__location svg-map__location--heat1`
+      }else{
+        return `svg-map__location svg-map__location--heat2`
+      }
     },
-    test() {
-      console.log(this.selected);
-    }
-  }
+  },
+  async created() {
+    await axios.post(
+        this.searchDataUrl,
+        {
+          username: this.$store.state.userName
+        }
+    ).then(res => {
+      this.personalData = res["data"]
+      this.component = PhotoCarousel
+    })
+  },
 }
 </script>
 
@@ -138,7 +152,6 @@ export default {
       }
 
       &--usa {
-        width: 1800px; // USA needs more space	for tooltip
         position: absolute;
         top: 10px;
         left: 0;

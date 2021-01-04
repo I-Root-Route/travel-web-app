@@ -22,7 +22,7 @@
             <v-list-item
                 v-for="(item, index) in menuItems"
                 :key="index"
-                :href="item.url"
+                @change=changeRoute(item.url)
             >
               <v-list-item-title>{{ item.title }}</v-list-item-title>
             </v-list-item>
@@ -69,12 +69,12 @@ export default {
     return {
       username: "",
       items: [
-        ['mdi-home', 'Home', this.$route.path],
+        ['mdi-home', 'Home', '/user/' + this.$store.state.userName],
         ['mdi-grease-pencil', 'Write', this.$route.path + '/write'],
       ],
       menuItems: [
         {title: "Account", url: this.$route.path + "/account"},
-        {title: "Logout", url: this.$route.path + "/logout"}
+        {title: "Logout", url: '/'}
       ]
     }
   },
