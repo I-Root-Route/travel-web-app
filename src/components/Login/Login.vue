@@ -134,7 +134,7 @@ export default {
   data() {
     return {
       //baseUrl: "http://localhost:5000/api/",
-      baseUrl: "https://journey-list.azurewebsites.net/api",
+      baseUrl: "https://journey-list.azurewebsites.net/api/",
       errorMessage: '',
       isErrorMessage: false,
       isLogin: true,
@@ -207,7 +207,7 @@ export default {
         axios.post(
             url,
             {
-              headers: {"Content-Type": "application/json"},
+              headers: {"Content-Type": "application/json", "Access-Control-Allow-Origin": '*'},
               data: {"username": this.nameLogin, "hashedPassword": shaObj.getHash("HEX")}
             }
         )

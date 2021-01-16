@@ -33,8 +33,8 @@ export default {
       countryName: "",
       stateName: "",
       cities: [],
-      searchStatesUrl: "http://localhost:5000/api/country_states",
-      searchCurrencyUrl: "http://localhost:5000/api/country_currency"
+      searchStatesUrl: "https://journey-list.azurewebsites.net/api/country_states",
+      searchCurrencyUrl: "https://journey-list.azurewebsites.net/api/country_currency"
     }
   },
   created() {

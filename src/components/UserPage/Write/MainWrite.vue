@@ -59,7 +59,7 @@ export default {
       isSubmissionValid: false,
       isSubmissionFailed: false,
       errorMessage: "",
-      insertUrl: "http://localhost:5000/api/insert_visit_data"
+      insertUrl: "https://journey-list.azurewebsites.net/api/insert_visit_data"
     }
   },
   methods: {
