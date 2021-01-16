@@ -30,6 +30,7 @@
                 v-model="passwordLogin"
                 :rules="passwordRules"
                 label="Password"
+                type="password"
                 required
             ></v-text-field>
             <v-btn
@@ -87,6 +88,7 @@
                 v-model="passwordRegister"
                 :rules="passwordRules"
                 label="Password"
+                type="password"
                 required
             ></v-text-field>
 
@@ -94,6 +96,7 @@
                 v-model="passwordConfirmRegister"
                 :rules="passwordConfirmRules"
                 label="Password"
+                type="password"
                 required
             ></v-text-field>
             <v-btn
