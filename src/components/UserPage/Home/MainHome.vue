@@ -55,7 +55,7 @@ export default {
       tipStyle: {
         position: 'fixed',
       },
-      searchDataUrl: "http://localhost:5000/api/search_personal_data",
+      searchDataUrl: "https://journey-list.azurewebsites.net/api/search_personal_data",
     };
   },
   methods: {

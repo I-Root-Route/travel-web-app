@@ -133,7 +133,8 @@ export default {
   name: "Login",
   data() {
     return {
-      baseUrl: "http://localhost:5000/api/",
+      //baseUrl: "http://localhost:5000/api/",
+      baseUrl: "https://journey-list.azurewebsites.net/api",
       errorMessage: '',
       isErrorMessage: false,
       isLogin: true,
@@ -163,7 +164,8 @@ export default {
       this.isRegister = !this.isRegister;
     },
     test(url) {
-      url = "http://localhost:5000/api/country_data"
+      //url = "http://localhost:5000/api/country_data"
+      url = "https://journey-list.azurewebsites.net/api/country_data"
       axios.get(url, {headers: {"Authorization": "Bearer ey1234"}})
           .then(res => {
             console.log(res);
