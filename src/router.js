@@ -15,7 +15,7 @@ Vue.use(Router)
 Vue.use(Vuex)
 
 const router = new Router({
-    mode: "history",
+    mode: "hash",
     routes: [
         {path: '/', component: Login},
         {path: '/user/:id', component: Layout,
