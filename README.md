@@ -1,6 +1,7 @@
 # frontend
 ## アクセス
 url: https://brave-plant-06292c600.azurestaticapps.net <br>
+スマホ非対応。ログイン出来ない時は時間を置いてもう一度お試し下さい。<br>
 アカウント作成の手間を省いて動作確認をしたい場合は以下のユーザー名とパスワードを入力してログインしてください。 <br>
 ユーザー名: testuser <br>
 パスワード: test
